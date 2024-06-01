@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import DeleteView
+
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BlogListView(View):
@@ -54,3 +58,11 @@ class BlogUpdateView(View):
                 'form': update_form
             }
             return render(request, 'update.html', context=context)
+
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('blogs:home')
+
+
