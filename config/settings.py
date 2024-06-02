@@ -38,12 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # outdoor apps
-    'crispy_bootstrap4',
     'crispy_forms',
-    'rest_framework',
     'ckeditor',
     'ckeditor_uploader',
-
     # my apps
     'users',
     'blogs',
