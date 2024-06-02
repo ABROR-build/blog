@@ -17,7 +17,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F7F7F7">
         <a class="navbar-brand" href="{% url 'blogs:home' %}">
             <img src="{% static 'assets/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
             Blogs Site
@@ -50,7 +50,7 @@
                 {% endif %}
                 {% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blogs:my_blogs' %}">my blogs</a>
+                        <a class="nav-link" href="{% url 'blogs:my-blogs' %}">my blogs</a>
                     </li>
                 {% endif %}
             </ul>

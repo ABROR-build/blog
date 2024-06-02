@@ -101,7 +101,7 @@ class BlogDetailView(LoginRequiredMixin, DetailView):
         return self.render_to_response(context)
 
 
-class BlogSortMyBlogsView(View):
+class BlogSortMyBlogsView(LoginRequiredMixin, View):
     template_name = 'my_blogs.html'
 
     def get(self, request, *args, **kwargs):
@@ -110,4 +110,4 @@ class BlogSortMyBlogsView(View):
             'my_blogs': my_blogs,
             'title': 'My Blogs',
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context=context)

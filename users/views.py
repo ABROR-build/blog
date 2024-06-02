@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from users import models
 from users import forms
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 class RegisterView(View):
@@ -53,12 +54,12 @@ class LogoutView(View):
         return redirect('blogs:home')
 
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'profile.html')
 
 
-class ProfileUpdateView(View):
+class ProfileUpdateView(LoginRequiredMixin, View):
     def get(self, request):
         update_form = forms.EditMyProfileForm(instance=request.user)
         if update_form.is_valid():
