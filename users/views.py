@@ -62,13 +62,8 @@ class ProfileView(LoginRequiredMixin, View):
 class ProfileUpdateView(LoginRequiredMixin, View):
     def get(self, request):
         update_form = forms.EditMyProfileForm(instance=request.user)
-        if update_form.is_valid():
-            return redirect('users:profile')
-        else:
-            context = {
-                'form': update_form
-            }
-            return render(request, 'profile_edit.html', context=context)
+        context = {'form': update_form}
+        return render(request, 'profile_edit.html', context=context)
 
     def post(self, request):
         update_form = forms.EditMyProfileForm(request.POST, request.FILES, instance=request.user)
@@ -76,7 +71,5 @@ class ProfileUpdateView(LoginRequiredMixin, View):
             update_form.save()
             return redirect('users:profile')
         else:
-            context = {
-                'form': update_form
-            }
+            context = {'form': update_form}
             return render(request, 'profile_edit.html', context=context)
