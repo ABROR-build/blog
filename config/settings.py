@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # outdoor apps
+    'crispy_bootstrap4',
+    'crispy_forms',
     'rest_framework',
+    'ckeditor',
+    'ckeditor_uploader',
+
     # my apps
     'users',
     'blogs',
@@ -120,12 +125,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# STATIC
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
+# MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -137,3 +145,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+LOGIN_REDIRECT_URL = 'blogs:home'
+LOGOUT_REDIRECT_URL = 'blogs:home'
+
+LOGIN_URL = '/users/login/'
+
+
+# CKEDITOR CONFIGS
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+    },
+}
+
+CKEDITOR_UPLOAD_PATH = "file_upload/"
+CKEDITOR_RESTRICT_BY_USER = True

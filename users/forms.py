@@ -1,5 +1,5 @@
 from django import forms
-from . import models
+from blogs import models
 
 
 class RegistrationForm(forms.ModelForm):
@@ -7,7 +7,7 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = models.User
-        fields = ['username', 'password', 'image']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password', 'image']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -20,4 +20,4 @@ class RegistrationForm(forms.ModelForm):
 class EditMyProfileForm(forms.ModelForm):
     class Meta:
         model = models.User
-        fields = ['username', 'password', 'image']
+        fields = ['username', 'email', 'first_name', 'last_name', 'image']
