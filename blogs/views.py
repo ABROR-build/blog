@@ -5,7 +5,6 @@ from django.views.generic import DeleteView, DetailView
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import PostForm, CommentForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BlogListView(View):
@@ -79,7 +78,7 @@ class BlogDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return blog.author == self.request.user
 
 
-class BlogDetailView(LoginRequiredMixin, DeleteView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = 'blog_detail.html'
 
